@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+container{
+    display: flex;
+}
+
+.card{
+    border: black solid 1px;
+    padding: 2%;
+    border-radius: 8px;
+}
+
+.close{
+    align-self: end;
+}
+
+#new{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    display: flex;
+    justify-content: space-between;
+}
+
