@@ -5,14 +5,17 @@ const modal = document.querySelector('.book-form');
 const modalClose = document.querySelector('.close');
 const submitBtn = document.querySelector('.submit');
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
 
-    this.info = function() {
-        info = this.title + ' by ' + this.author + ', ' + pages + ' pages, ';
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info() {
+        let info = this.title + ' by ' + this.author + ', ' + this.pages + ' pages, ';
         if (this.read) {
             info += 'read';
         } else {
@@ -23,11 +26,7 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.isRead = function() {
-    if (this.read) {
-        this.read = false;
-    } else {
-        this.read = true;
-    }
+    this.read = !this.read;
 }
 
 function addBookToLibrary(library, title, author, pages, read) {
