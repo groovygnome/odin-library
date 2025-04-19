@@ -4,6 +4,11 @@ const bookBtn = document.querySelector('.new-book');
 const modal = document.querySelector('.book-form');
 const modalClose = document.querySelector('.close');
 const submitBtn = document.querySelector('.submit');
+const inputs = document.querySelectorAll('input:not([type="submit"])')
+
+inputs.forEach((input) => {
+    input.addEventListener('input', () => showError(input));
+});
 
 class Book {
 
@@ -68,11 +73,28 @@ function displayBook(book) {
     container.appendChild(card);
 }
 
+function showError(input) {
+    input.setCustomValidity('');
+    if (input.validity.valueMissing || input.validity.typeMismatch) {
+        input.setCustomValidity(`Please enter an ${input.type}.`);
+    } else if (input.validity.rangeUnderflow) {
+        input.setCustomValidity(`Please enter a value larger than ${input.min}`);
+    } else if (input.validity.rangeOverflow) {
+        input.setCustomValidity(`Please enter a value smaller than ${input.max}`);
+    } else if (input.validity.tooShort) {
+        input.setCustomValidity(`Please enter a value longer than ${input.minLength} characters.`);
+    } else if (input.validity.tooLong) {
+        input.setCustomValidity(`Please enter a value shorter than ${input.maxLength}`);
+    }
+    input.reportValidity();
+}
+
 bookBtn.addEventListener('click', () => { modal.show(); });
 modalClose.addEventListener('click', () => { modal.close(); event.preventDefault(); });
 submitBtn.addEventListener('click', () => {
     modal.close();
     event.preventDefault();
+
     let book = new Book(document.querySelector('#title').value, document.querySelector('#author').value, document.querySelector('#pages').value, document.querySelector('#read').checked);
     displayBook(book);
     lib.push(book);

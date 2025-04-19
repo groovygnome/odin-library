@@ -13,19 +13,19 @@
                 <button class='close'>&times;</button>
                 <label for='title'>
                     <span>Title</span>
-                    <input type='text' id='title' />
+                    <input type='text' id='title' minlength='1' required/>
                 </label>
                 <label for='author'>
                     <span>Author</span>
-                    <input type='text' id='author' />
+                    <input type='text' id='author' minlength='1' required/>
                 </label>
                 <label for='pages'>
                     <span># of Pages</span>
-                    <input type='number' id='pages' step='1' />
+                    <input type='number' id='pages' step='1' min='1' required />
                 </label>
                 <label for='read'>
                     <span>Read</span>
-                    <input type='checkbox' value='true' id='read' />
+                    <input type='checkbox' value='true' id='read' required />
                 </label>
                 <input class='submit' type='submit' form='new'>
 
