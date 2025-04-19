@@ -4,7 +4,9 @@ const bookBtn = document.querySelector('.new-book');
 const modal = document.querySelector('.book-form');
 const modalClose = document.querySelector('.close');
 const submitBtn = document.querySelector('.submit');
-const inputs = document.querySelectorAll('input:not([type="submit"])')
+const inputs = document.querySelectorAll('input[required]');
+const form = document.querySelector('#new');
+
 
 inputs.forEach((input) => {
     input.addEventListener('input', () => showError(input));
@@ -92,18 +94,23 @@ function showError(input) {
 bookBtn.addEventListener('click', () => { modal.show(); });
 modalClose.addEventListener('click', () => { modal.close(); event.preventDefault(); });
 submitBtn.addEventListener('click', () => {
-    modal.close();
-    event.preventDefault();
 
-    let book = new Book(document.querySelector('#title').value, document.querySelector('#author').value, document.querySelector('#pages').value, document.querySelector('#read').checked);
-    displayBook(book);
-    lib.push(book);
+    if (form.checkValidity()) {
+
+        modal.close();
+        event.preventDefault();
+
+        let book = new Book(document.querySelector('#title').value, document.querySelector('#author').value, document.querySelector('#pages').value, document.querySelector('#read').checked);
+        displayBook(book);
+        lib.push(book);
 
 
-    document.querySelector('#title').value = '';
-    document.querySelector('#author').value = '';
-    document.querySelector('#pages').value = '';
-    document.querySelector('#read').checked = false;
+        document.querySelector('#title').value = '';
+        document.querySelector('#author').value = '';
+        document.querySelector('#pages').value = '';
+        document.querySelector('#read').checked = false;
+    } else {
+    }
 });
 
 
