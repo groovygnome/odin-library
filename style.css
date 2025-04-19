@@ -27,3 +27,6 @@ label{
     justify-content: space-between;
 }
 
+input:invalid{
+    border: 3px solid red;
+}
